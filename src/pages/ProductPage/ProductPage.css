@@ -1,0 +1,121 @@
+.ProductPage {
+  color: var(--color-400);
+}
+
+.productPage-container {
+  max-width: var(--width-md);
+  margin-inline: auto;
+  padding-inline: 5%;
+  /* border: 2px solid grey; */
+  min-height: var(--full-vh);
+}
+
+.product-showcase {
+  margin-top: 3rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 300px 1fr;
+  /* border: 3px solid green; */
+
+  /* padding-block: 2rem; */
+}
+
+.product-showcase .image-container {
+  grid-column: span 1;
+  /* border: 3px solid green; */
+  height: 300px;
+  /* min-height: 300px; */
+
+  overflow: hidden;
+}
+
+.product-showcase .product-summary {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  /* border: 3px solid green; */
+}
+
+.product-name {
+  font-weight: normal;
+  max-width: 25ch;
+  font-size: var(--font-lg);
+  color: var(--color-secondary-light);
+  color: var(--color-400);
+  margin-bottom: 0.75rem;
+}
+
+.short-description {
+  color: var(--color-300);
+  font-size: var(--font-sm);
+}
+.short-description span {
+  color: var(--color-secondary-light);
+}
+
+.product-showcase .image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-showcase .description > * {
+  margin-bottom: 1rem;
+  color: var(--color-200);
+}
+.description {
+  padding-block: 1rem;
+}
+
+.description h2 {
+  font-size: var(--font-lg);
+  font-weight: normal;
+  margin-bottom: 0.75rem;
+}
+
+.product-price {
+  font-size: var(--font-xl);
+  margin-bottom: 0.75rem;
+  color: var(--color-secondary-light);
+}
+
+.addTo-btn {
+  text-transform: uppercase;
+  color: white;
+  padding: 0.75em 1.5em;
+  background-color: var(--color-primary);
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.addTo-btn:hover {
+  background-color: var(--color-secondary);
+}
+
+.qty-adjuster {
+  display: flex;
+  align-items: center;
+  /* border: 2px solid var(--color-secondary); */
+  width: fit-content;
+}
+
+.qty-adjuster .count {
+  padding: 0.5em 1em;
+}
+
+.qty-adjuster button {
+  padding: 0.5em 1.25em;
+  transition: all 0.3s ease-in-out;
+  color: var(--color-secondary);
+  /* border-radius: var(--border-radius); */
+  border: 1px solid var(--color-secondary);
+  cursor: pointer;
+}
+
+.qty-adjuster button:hover {
+  background-color: var(--color-secondary);
+  color: white;
+}

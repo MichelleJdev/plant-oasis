@@ -1,0 +1,31 @@
+.Breadcrumbs {
+  color: var(--color-200);
+  padding: 0.5rem 5%;
+  border-bottom: 1px solid var(--color-200);
+}
+
+.Breadcrumbs .container {
+  display: flex;
+  margin: 0 auto;
+  max-width: var(--width-lg);
+}
+
+.Breadcrumbs a {
+  position: relative;
+  margin-right: 1em;
+}
+
+.Breadcrumbs a::after {
+  font-size: 0.75rem;
+  top: 0.25em;
+  position: absolute;
+  content: ">";
+  margin-left: 0.5em;
+}
+.Breadcrumbs a:last-of-type:after {
+  content: "";
+}
+
+.Breadcrumbs a:last-of-type {
+  margin-right: 0.75em;
+}

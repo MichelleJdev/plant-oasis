@@ -1,0 +1,202 @@
+@import url("https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Quicksand:wght@300&family=Roboto:wght@300;400&family=Rochester&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Amita:wght@400;700&family=Borel&family=Quicksand:wght@300&family=Roboto:wght@300;400&family=Rochester&display=swap");
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --width-md: 800px;
+  --width-lg: 1080px;
+  --width-xl: 1440px;
+
+  --padding-inline: 5%;
+
+  --full-vh: calc(100vh - 49.16px);
+  --half-vh: calc(50vh - 49.16px);
+
+  --color-success-light: rgb(183, 226, 216);
+  --color-success: rgb(138, 195, 193);
+  --color-success-dark: rgb(75, 153, 158);
+  --color-warning-light: rgb(227, 186, 190);
+  --color-warning: rgb(180, 130, 139);
+  --color-warning-dark: rgb(160, 96, 105);
+  --color-primary-light: rgb(200, 192, 192);
+  --color-primary: rgb(125, 120, 120);
+  --color-primary-dark: rgb(92, 87, 86);
+  --color-secondary-pale: rgb(171, 192, 202);
+  --color-secondary-light: rgb(89, 128, 147);
+  --color-secondary: rgb(45, 87, 108);
+  --color-secondary-dark: rgb(18, 48, 63);
+  --color-600: rgb(19, 19, 20);
+  --color-500: rgb(46, 46, 46);
+  --color-400: rgb(84, 86, 86);
+  --color-300: rgb(137, 137, 137);
+  --color-200: rgb(182, 182, 182);
+  --color-100: rgb(227, 227, 227);
+
+  --font-xs: 12px;
+  --font-sm: 14px;
+  --font-md: 16px;
+  --font-lg: 24px;
+  --font-xl: 32px;
+  --font-xxl: 52px;
+
+  --font-basic: Arial, Helvetica, sans-serif;
+  --font-stylish: 52px;
+
+  --border-radius: 5px;
+  --button-transition: all 0.3s ease-in-out;
+  --button-shadow: 0 0 5px rgba(150, 150, 150, 0.7);
+}
+html {
+  scroll-behavior: smooth !important;
+}
+
+body {
+  color: white;
+  font-family: var(--font-basic);
+  /* scroll-behavior: smooth; */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.returnBtn {
+  padding: 0.75em 2em;
+  transition: var(--button-transition);
+  text-transform: uppercase;
+  font-size: var(--font-xs);
+  margin-top: 1rem;
+}
+.returnBtn:hover {
+  box-shadow: var(--button-shadow);
+}
+
+.Login .container,
+.Register .container {
+  background-color: var(--color-100);
+  display: flex;
+  max-width: var(--width-xl);
+  margin-inline: auto;
+  min-height: 100vh;
+}
+
+.Login .img-container,
+.Register .img-container {
+  flex-grow: 3;
+  min-width: 350px;
+  background-image: url("./assets/images/auth.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.Login .form-container,
+.Register .form-container {
+  padding: 4rem 5%;
+  flex-grow: 2;
+  background-color: var(--color-100);
+}
+.input-group {
+  margin-bottom: 1rem;
+}
+.input-group .input-container {
+  position: relative;
+}
+.input-group input {
+  display: block;
+  width: 100%;
+  padding: 0.5em 1em;
+}
+.input-group input.password {
+  padding-right: calc(1em + 1rem);
+}
+
+.login-reg-btn {
+  display: flex;
+  font-family: "Bodoni Moda", serif;
+  margin-top: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 0.5em 2em;
+  cursor: pointer;
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  text-transform: uppercase;
+  font-style: italic;
+  color: white;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 1px;
+}
+
+.login-reg-btn:hover {
+  background-color: transparent;
+  box-shadow: 0 0 3px 2px var(--color-primary);
+  color: var(--color-secondary);
+}
+
+.login-reg-btn:disabled {
+  background-color: rgb(193, 190, 190);
+  cursor: not-allowed;
+  box-shadow: initial;
+  color: white;
+  border: none;
+}
+
+.login-reg-option {
+  color: var(--color-200);
+  font-size: var(--font-xs);
+  font-weight: lighter;
+  letter-spacing: 0.03em;
+  margin-top: 1rem;
+}
+.login-reg-option a {
+  text-decoration: underline;
+}
+
+.checkbox {
+  font-size: 2rem;
+  font-size: var(--font-sm);
+  display: flex;
+  align-items: center;
+}
+
+.checkbox label {
+  display: inline-block;
+  margin-right: 0.5rem;
+}
+@media screen and (max-width: 700px) {
+  .Login .img-container,
+  .Register .img-container {
+    display: none;
+  }
+
+  .Login .form-text,
+  .Register .img-container {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .Login .container > *,
+  .Register .container > * {
+    flex-basis: 100%;
+  }
+}

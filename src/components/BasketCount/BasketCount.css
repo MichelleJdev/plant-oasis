@@ -1,0 +1,21 @@
+.BasketCount {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.BasketCount-qty {
+  transition: all 0.3s linear;
+  opacity: 1;
+  position: absolute;
+  font-size: var(--font-xs);
+  font-weight: bold;
+  color: var(--color-primary-light);
+  top: -3px;
+  right: -2px;
+}
+
+.BasketCount-qty.show {
+  opacity: 1;
+}

@@ -1,0 +1,9 @@
+export const BASKET_SUMMARY_ROUTE = "/basket/cart-details";
+export const BASKET_ROUTE_AUTH = "/basket/auth";
+export const BASKET_ROUTE_GUEST = "/basket/guest";
+export const SYNC_CART_ROUTE = "/basket/cart-sync";
+export const EMPTY_CART_ROUTE = "basket/auth/empty-cart";
+export const CHECKOUT_ROUTE = "/checkout";
+export const CHECKOUT_ROUTE_AUTH = "/checkout/authenticated";
+export const CATEGORIES_ROUTE = "/categories";
+export const REGISTER_ROUTE = "/auth/register";

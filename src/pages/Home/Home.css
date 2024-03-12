@@ -1,0 +1,169 @@
+.Home {
+  min-height: var(--full-vh);
+}
+
+.Home .hero {
+  color: var(--color-secondary);
+  min-height: var(--half-vh);
+  background-image: url("../../assets/images/hero.jpg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home .container {
+  max-width: var(--width-md);
+  margin: 0 auto;
+  padding: 2rem 5%;
+}
+.Home .container h2 {
+  margin-bottom: 1rem;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: var(--font-xxl);
+  text-align: center;
+  color: var(--color-primary-light);
+  text-shadow: 0 0 8px black;
+  letter-spacing: 0.1em;
+}
+
+.hero p {
+  color: white;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.9);
+  text-align: center;
+}
+
+.Home .categories {
+  color: var(--color-secondary);
+}
+
+.Home .categories-list,
+.Home .SkeletonLinks {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1rem;
+  min-height: calc(50vh - 60.5px);
+}
+
+.Home .create-account {
+  color: var(--color-secondary);
+  background-color: var(--color-100);
+}
+
+.create-account .container {
+  min-height: var(--half-vh);
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.create-account-features {
+  display: flex;
+  justify-content: space-around;
+}
+
+.create-account-features svg {
+  margin-right: 0.5em;
+}
+.create-account-features p {
+  text-align: center;
+  max-width: 20ch;
+}
+
+.create-account-features h4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.create-account .btn {
+  background-color: var(--color-primary-light);
+  border: none;
+  text-transform: uppercase;
+  padding: 0.5em 1em;
+  align-self: flex-start;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+.create-account p {
+  margin-bottom: 1rem;
+}
+
+/* ONE + multiple of 4 */
+
+.Home .categories-list.one .CategoryLink:nth-child(4n + 1) {
+  grid-column: span 6;
+}
+.Home .categories-list.one .CategoryLink:nth-child(4n + 2) {
+  grid-column: span 2;
+}
+.Home .categories-list.one .CategoryLink:nth-child(4n + 3) {
+  grid-column: span 2;
+}
+.Home .categories-list.one .CategoryLink:nth-child(4n + 4) {
+  grid-column: span 2;
+}
+/* TWO + multiple of 4 */
+
+.Home .categories-list.two .CategoryLink:nth-child(4n + 1) {
+  grid-column: span 4;
+}
+.Home .categories-list.two .CategoryLink:nth-child(4n + 2) {
+  grid-column: span 2;
+}
+.Home .categories-list.two .CategoryLink:nth-child(4n + 3) {
+  grid-column: span 2;
+}
+.Home .categories-list.two .CategoryLink:nth-child(4n + 4) {
+  grid-column: span 4;
+}
+
+/* THREE + multiple of 4 */
+
+.Home .categories-list.three .CategoryLink:nth-child(4n + 1) {
+  grid-column: span 3;
+}
+.Home .categories-list.three .CategoryLink:nth-child(4n + 2) {
+  grid-column: span 3;
+}
+.Home .categories-list.three .CategoryLink:nth-child(4n + 3) {
+  grid-column: span 6;
+}
+.Home .categories-list.three .CategoryLink:nth-child(4n + 4) {
+  grid-column: span 6;
+}
+/* FOUR + multiple of 4 */
+
+.Home .categories-list.four .CategoryLink:nth-child(4n + 1) {
+  grid-column: span 2;
+}
+.Home .categories-list.four .CategoryLink:nth-child(4n + 2) {
+  grid-column: span 4;
+}
+.Home .categories-list.four .CategoryLink:nth-child(4n + 3) {
+  grid-column: span 4;
+}
+.Home .categories-list.four .CategoryLink:nth-child(4n + 4) {
+  grid-column: span 2;
+}
+
+.Home .sign-up {
+  padding: 1rem;
+  color: var(--color-secondary);
+  min-height: 100vh;
+  background-color: rgb(238, 235, 235);
+}

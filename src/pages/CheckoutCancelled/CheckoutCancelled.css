@@ -1,0 +1,33 @@
+.CheckoutCancelled {
+  color: var(--color-300);
+}
+
+.CheckoutCancelled .container {
+  max-width: var(--width-lg);
+  margin-inline: auto;
+  min-height: var(--full-vh);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CheckoutCancelled h4 {
+  text-align: center;
+}
+
+.CheckoutCancelled button:hover {
+  box-shadow: var(--button-shadow);
+}
+
+.cancel-btn-group {
+  display: flex;
+  gap: 2rem;
+}
+
+.returnToCart {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+}

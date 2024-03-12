@@ -1,0 +1,98 @@
+.Header {
+  background: linear-gradient(
+    to right bottom,
+    var(--color-primary-light),
+    var(--color-secondary-light)
+  );
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.Header .signOut-btn {
+  display: flex;
+  background-color: transparent;
+  border: none;
+}
+.Header .signOut-btn svg:hover {
+  color: var(--color-secondary);
+}
+.Header .signOut-btn svg {
+  font-size: 1.1rem;
+  color: white;
+}
+
+.desktop-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.shop-btn {
+  display: flex;
+  align-items: center;
+}
+.shop-btn svg {
+  font-size: 0.75rem;
+  margin-left: 0.25em;
+}
+.desktop-links button,
+.desktop-links a {
+  font-size: 1rem;
+}
+
+.siteLogo {
+  height: 45px;
+  padding-block: 0.2rem;
+}
+
+.nav-container {
+  max-width: var(--width-xl);
+  margin-inline: auto;
+  padding-inline: var(--padding-inline);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  gap: 1rem;
+}
+.nav-right a:hover,
+.desktop-links a:hover,
+.desktop-links button:hover {
+  color: var(--color-secondary);
+}
+.nav-right a,
+.desktop-links a,
+.desktop-links button {
+  transition: all 0.2s ease-in-out;
+}
+
+.desktop-links button {
+  border: none;
+  background-color: transparent;
+  color: white;
+}
+
+.cart-display {
+  position: relative;
+}
+
+.cart-display-num {
+  position: absolute;
+  font-size: var(--font-xs);
+  font-weight: bold;
+  color: var(--color-secondary);
+  top: -3px;
+  right: -2px;
+}
+
+.Header .loading-categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

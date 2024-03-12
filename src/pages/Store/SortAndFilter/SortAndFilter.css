@@ -1,0 +1,20 @@
+.SortAndFilter {
+  font-size: var(--font-sm);
+  background-color: var(--color-100);
+  color: var(--color-400);
+  position: sticky;
+  top: 49px;
+  top: 0;
+}
+
+.sortFilter-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 5%;
+  max-width: var(--width-lg);
+  margin-inline: auto;
+}
+
+.perPageSelector label {
+  margin-right: 0.5rem;
+}

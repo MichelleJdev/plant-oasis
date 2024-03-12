@@ -1,0 +1,39 @@
+.CategoryLink {
+  /* border-radius: 5px;
+  overflow: hidden; */
+}
+
+.CategoryLink .container {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1rem 2rem;
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.CategoryLink h2 {
+  color: var(--color-primary-light);
+  font-family: "Amita", serif;
+  font-family: "Rochester", cursive;
+  font-family: "Borel", cursive;
+  font-size: 20px;
+  /* text-shadow: 0 0 3px var(--color-secondary); */
+  /* font-weight: bold; */
+  margin-bottom: 0.25em;
+  text-shadow: 0 0 1px black;
+}
+.CategoryLink p {
+  color: rgba(255, 255, 255, 0.9);
+  /* color: var(--color-primary-dark); */
+  line-height: 1em;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 1px black;
+  font-size: var(--font-xs);
+  font-weight: lighter;
+  max-width: 50ch;
+}

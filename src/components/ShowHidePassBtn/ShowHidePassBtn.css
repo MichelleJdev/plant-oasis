@@ -1,0 +1,15 @@
+.ShowHidePassword {
+  font-size: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: 0.5em;
+  bottom: 0.5em;
+  border: none;
+  background-color: transparent;
+}
+
+.ShowHidePassword svg {
+  color: var(--color-secondary);
+}

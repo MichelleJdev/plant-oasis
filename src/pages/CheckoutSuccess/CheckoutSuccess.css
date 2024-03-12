@@ -1,0 +1,14 @@
+.CheckoutSuccess {
+  color: var(--color-300);
+}
+
+.CheckoutSuccess .container {
+  margin-inline: auto;
+  max-width: var(--width-lg);
+  min-height: var(--full-vh);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+}
