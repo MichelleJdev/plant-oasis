@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import useScreenSize from "../../hooks/useScreenSize";
 import useCartContext from "../../hooks/useCartContext";
-// import axios from "../../api/axiosInstance";
 import useAxiosInterceptors from "../../hooks/useAxiosInterceptors";
 import PageAnimator from "../../components/PageAnimator";
 import truncateString from "../../utils/truncateString";
@@ -11,7 +11,6 @@ import "./ProductPage.css";
 import ProductBtnGroup from "../../components/ProductBtnGroup/ProductBtnGroup";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 
-const descCharLimit = 120;
 const ENDPOINT = "/products";
 
 function ProductPage() {
@@ -19,7 +18,9 @@ function ProductPage() {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // const navigate = useNavigate();
+  const { isDesktop } = useScreenSize();
+
+  const descriptionCharLimit = isDesktop ? 140 : 60;
   const axios = useAxiosInterceptors();
 
   const { addToCart, getProductQty } = useCartContext();
@@ -81,8 +82,12 @@ function ProductPage() {
                 <div>
                   <h1 className="product-name">{product.name}</h1>
                   <p className="short-description">
-                    {truncateString(descCharLimit, product.description, "...")}
-                    {product.description.length >= descCharLimit && (
+                    {truncateString(
+                      descriptionCharLimit,
+                      product.description,
+                      "..."
+                    )}
+                    {product.description.length >= descriptionCharLimit && (
                       <span>
                         <a href="#description">read more</a>
                       </span>
