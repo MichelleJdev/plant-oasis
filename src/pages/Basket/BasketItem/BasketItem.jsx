@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ProductBtnGroup from "../../../components/ProductBtnGroup/ProductBtnGroup";
 
 function BasketItem({ item }) {
-  const { id, imageUrl, name, quantity, formattedPrice } = item;
+  const { id, imageUrl, name, quantity, formattedPrice, category } = item;
   return (
     <li className="BasketItem" key={id}>
       <div className="item_image-container">
@@ -11,7 +11,7 @@ function BasketItem({ item }) {
       </div>
       <div className="item_details">
         <div>
-          <Link to={`/store/${id}`}>
+          <Link to={`/store/${category}/${id}`}>
             {" "}
             <h3>{name}</h3>
           </Link>

@@ -158,6 +158,7 @@ function Basket() {
           }
         );
         let additionalCartData = response.data?.cartDetails;
+        console.log(additionalCartData);
         additionalCartData = cartItems.map((item) => {
           const matchedItem = additionalCartData.find(
             (product) => product.id === item.id
@@ -168,6 +169,7 @@ function Basket() {
             unitAmount: matchedItem.unitAmount,
             formattedPrice: matchedItem.formattedPrice,
             imageUrl: matchedItem.imageUrl,
+            category: matchedItem.category.name,
           };
         });
         setCartDetails([...additionalCartData]);
