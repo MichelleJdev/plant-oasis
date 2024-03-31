@@ -7,19 +7,14 @@ import BasketCount from "../../BasketCount/BasketCount";
 import useAuth from "../../../auth/hooks/useAuth";
 import useGlobalContext from "../../../hooks/useGlobalContext";
 import { IoIosLogOut } from "react-icons/io";
-import ClipLoader from "react-spinners/ClipLoader";
 import PulseLoader from "react-spinners/PulseLoader";
-import { BiUser } from "react-icons/bi";
 import { BiMenu } from "react-icons/bi";
 import { IoCaretDownSharp } from "react-icons/io5";
-
 import useScreenSize from "../../../hooks/useScreenSize";
-// import DesktopNav from "./DesktopNav/DesktopNav";
-
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
 
 function Header() {
-  const { cartItems } = useCartContext();
+  const { cartItems, loading: cartLoading } = useCartContext();
   const { isAuthenticated, handleLogout, logoutLoading } = useAuth();
 
   const { categoriesLoading, navData } = useGlobalContext();
@@ -61,7 +56,7 @@ function Header() {
 
         <div className="nav-right">
           <NavLink to="/basket">
-            <BasketCount quantity={totalInCart} />
+            <BasketCount quantity={totalInCart} loading={cartLoading} />
           </NavLink>
           {isAuthenticated ? (
             <button onClick={handleLogout} className="signOut-btn">

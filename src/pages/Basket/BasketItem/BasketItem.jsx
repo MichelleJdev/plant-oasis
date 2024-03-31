@@ -20,7 +20,7 @@ function BasketItem({ item }) {
           <div className="item_quantity">{`QTY: ${quantity}`}</div>
         </div>
 
-        <ProductBtnGroup id={id} key={id} />
+        <ProductBtnGroup id={id} key={id} hideLoader={true} />
       </div>
     </li>
   );

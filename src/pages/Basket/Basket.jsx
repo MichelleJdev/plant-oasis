@@ -7,6 +7,8 @@ import useAxiosPrivate from "../../auth/hooks/useAxiosPrivate";
 import BasketItem from "./BasketItem/BasketItem";
 import CartLoading from "../../components/CartLoading/CartLoading";
 import PageAnimator from "../../components/PageAnimator";
+import ClipLoader from "react-spinners/ClipLoader";
+import PulseLoader from "react-spinners/PulseLoader";
 import { toast } from "react-toastify";
 import {
   SERVER_ERROR_MSG,
@@ -20,17 +22,23 @@ import {
   CHECKOUT_ROUTE,
   CHECKOUT_ROUTE_AUTH,
 } from "../../api/endpoints";
-import axiosInstance from "../../api/axiosInstance";
 import "./Basket.css";
 
+const totalLoaderOverride = {
+  margin: "0 auto",
+  height: "0.75rem",
+  width: "0.75rem",
+};
+
 function Basket() {
-  const { cartItems, setCartItems } = useCartContext();
+  const { cartItems, setCartItems, loading: cartLoading } = useCartContext();
   const { auth, setAuth, isAuthenticated } = useAuth();
   const axiosPrivate = useAxiosPrivate();
-  const [cartStockSynced, setCartStockSynced] = useState(false);
-  const [summaryLoading, setSummaryLoading] = useState(false);
+  const [stockReconciled, setStockReconciled] = useState(false);
   const [checkoutLoading, setCheckoutLoading] = useState(false);
   const [cartDetails, setCartDetails] = useState([]);
+  const [cartDetailsLoading, setCartDetailsLoading] = useState(false);
+  const [cartDetailsInitialized, setCartDetailsInitialzed] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -81,11 +89,12 @@ function Basket() {
   };
 
   useEffect(() => {
-    if (cartItems.length > 0 && !cartStockSynced) {
-      const controller = new AbortController();
-      const syncCartByStock = async () => {
-        if (auth?.accessToken) {
-          const refreshBasketAuth = async () => {
+    if (!cartItems.length) return setStockReconciled(true);
+    const controller = new AbortController();
+    if (!stockReconciled) {
+      const reconcileCartWithStock = async () => {
+        if (isAuthenticated) {
+          const reconcileStockAuth = async () => {
             try {
               const response = await axiosPrivate.post(
                 `${SYNC_CART_ROUTE}/auth`,
@@ -94,9 +103,9 @@ function Basket() {
                   signal: controller.signal,
                 }
               );
-              const revisedCart = response.data?.cart;
-              setCartItems([...revisedCart]);
-              setCartStockSynced(true);
+              const reconciledCart = response.data?.cart;
+              setCartItems([...reconciledCart]);
+              setStockReconciled(true);
               if (response.data?.messages?.outOfStock?.length) {
                 toast.info(OUT_OF_STOCK_MSG);
               }
@@ -104,9 +113,9 @@ function Basket() {
               console.log(error);
             }
           };
-          refreshBasketAuth();
+          reconcileStockAuth();
         } else {
-          const refreshBasketGuest = async () => {
+          const reconcileStockGuest = async () => {
             try {
               const response = await axios.post(
                 `${SYNC_CART_ROUTE}/guest`,
@@ -120,7 +129,7 @@ function Basket() {
               const revisedCart = response.data?.cart;
               setCartItems([...revisedCart]);
               localStorage.setItem("cart", JSON.stringify(revisedCart));
-              setCartStockSynced(true);
+              setStockReconciled(true);
               if (response.data?.messages?.outOfStock?.length) {
                 toast.info(OUT_OF_STOCK_MSG);
               }
@@ -128,27 +137,35 @@ function Basket() {
               console.log(error);
             }
           };
-          refreshBasketGuest();
+          reconcileStockGuest();
         }
       };
-      syncCartByStock();
-      return () => controller.abort();
+      reconcileCartWithStock();
     }
-  }, [cartItems, cartStockSynced, auth, setCartItems, setCartStockSynced]);
+    return () => controller.abort();
+  }, [
+    cartItems,
+    stockReconciled,
+    auth,
+    setCartItems,
+    setStockReconciled,
+    isAuthenticated,
+    axiosPrivate,
+  ]);
 
   useEffect(() => {
-    if (!cartStockSynced) return;
+    if (!stockReconciled) return;
     if (!cartItems.length) {
       setCartDetails([]);
-      //make inital state empty array
-      setSummaryLoading(false);
+      setCartDetailsLoading(false);
+      setCartDetailsInitialzed(true);
       return;
     }
     const controller = new AbortController();
     const getCartDetails = async () => {
       try {
-        setSummaryLoading(true);
-        const response = await axiosInstance.post(
+        setCartDetailsLoading(true);
+        const response = await axios.post(
           BASKET_SUMMARY_ROUTE,
           {
             cartItems,
@@ -158,7 +175,6 @@ function Basket() {
           }
         );
         let additionalCartData = response.data?.cartDetails;
-        console.log(additionalCartData);
         additionalCartData = cartItems.map((item) => {
           const matchedItem = additionalCartData.find(
             (product) => product.id === item.id
@@ -173,20 +189,21 @@ function Basket() {
           };
         });
         setCartDetails([...additionalCartData]);
-        setSummaryLoading(false);
+        setCartDetailsLoading(false);
+        setCartDetailsInitialzed(true);
       } catch (error) {
         toast.error(SERVER_ERROR_MSG);
       }
     };
     getCartDetails();
     return () => controller.abort();
-  }, [cartItems, cartStockSynced]);
+  }, [cartItems, stockReconciled]);
 
   return (
     <PageAnimator>
       <div className="Basket">
         <div className="container">
-          {summaryLoading ? (
+          {!cartDetailsInitialized ? (
             <CartLoading />
           ) : cartDetails.length === 0 ? (
             <p>Basket Empty</p>
@@ -206,14 +223,29 @@ function Basket() {
           <div className="container">
             <div>
               <div className="total">
-                Total: <span>{cartPriceSum}</span>{" "}
+                Total:{" "}
+                <span>
+                  {cartPriceSum}{" "}
+                  {cartLoading || cartDetailsLoading ? (
+                    <div className="total-loader">
+                      <ClipLoader
+                        cssOverride={totalLoaderOverride}
+                        color="rgb(137, 137, 137)"
+                      />
+                    </div>
+                  ) : null}
+                </span>
               </div>
               <button
                 className="checkout-btn"
                 onClick={handleCheckout}
                 disabled={checkoutLoading}
               >
-                Checkout
+                {checkoutLoading ? (
+                  <PulseLoader color="white" size="10" />
+                ) : (
+                  "Checkout"
+                )}
               </button>
             </div>
           </div>

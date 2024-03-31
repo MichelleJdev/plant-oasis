@@ -1,28 +1,29 @@
 import React from "react";
 import { BiBasket } from "react-icons/bi";
-import useCartContext from "../../hooks/useCartContext";
 import ClipLoader from "react-spinners/ClipLoader";
 import "./BasketCount.css";
 const override = {
   display: "block",
   margin: "0 auto",
-  height: "1rem",
-  width: "1rem",
+  height: "0.75rem",
+  width: "0.75rem",
 };
-function BasketCount({ quantity, color }) {
-  const { loading, cartItems } = useCartContext();
-
+function BasketCount({ quantity, color, loading }) {
   const textColor = color || "inherit";
   return (
     <span className="BasketCount" style={{ color: textColor }}>
-      {loading ? (
-        <ClipLoader cssOverride={override} loading={loading} />
-      ) : (
-        <>
-          <BiBasket />
-          <span className="BasketCount-qty">{quantity}</span>
-        </>
-      )}
+      <BiBasket />
+      <span className="BasketCount-qty">
+        {loading ? (
+          <ClipLoader
+            cssOverride={override}
+            loading={loading}
+            color="rgb(200, 192, 192)"
+          />
+        ) : (
+          quantity
+        )}
+      </span>
     </span>
   );
 }

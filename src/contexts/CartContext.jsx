@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import useAuth from "../auth/hooks/useAuth";
 import useAxiosPrivate from "../auth/hooks/useAxiosPrivate";
-import axiosInstance from "../api/axiosInstance";
+import axios from "../api/axiosInstance";
 import { toast } from "react-toastify";
 
 import { BASKET_ROUTE_AUTH, BASKET_ROUTE_GUEST } from "../api/endpoints";
@@ -15,7 +15,8 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [cartInitialized, setCartInitialized] = useState(false);
-  const { auth, isAuthenticated } = useAuth();
+  const [currentlyUpdating, setCurrentlyUpdating] = useState(null);
+  const { isAuthenticated } = useAuth();
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -48,14 +49,14 @@ export const CartProvider = ({ children }) => {
       setCartItems(localCart);
       setCartInitialized(true);
     };
-    if (auth?.accessToken) {
+    if (isAuthenticated) {
       getUserCart();
     } else {
       getLocalCart();
     }
 
     return () => controller.abort();
-  }, [isAuthenticated]);
+  }, [isAuthenticated, axiosPrivate]);
 
   const getProductQty = (id) => {
     const quantity = cartItems.find((item) => item.id === id)?.quantity;
@@ -74,7 +75,9 @@ export const CartProvider = ({ children }) => {
           id: item.product,
           quantity: item.quantity,
         }));
+
         setCartItems(stateFormattedCart);
+        setCurrentlyUpdating(null);
         setLoading(false);
       } else {
         setLoading(true);
@@ -94,10 +97,12 @@ export const CartProvider = ({ children }) => {
         }
 
         setCartItems(stateFormattedCart);
+        setCurrentlyUpdating(null);
         setLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setCurrentlyUpdating(null);
       setLoading(false);
     }
   };
@@ -109,7 +114,7 @@ export const CartProvider = ({ children }) => {
       updatedCart = cartItems.filter((item) => item.id !== basketUpdate.id);
     } else {
       setLoading(true);
-      const response = await axiosPrivate.post(BASKET_ROUTE_GUEST, {
+      const response = await axios.post(BASKET_ROUTE_GUEST, {
         item: basketUpdate,
       });
       const updatedCartItem = response.data.updatedItem;
@@ -139,16 +144,19 @@ export const CartProvider = ({ children }) => {
     }
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+
     setCartItems([...updatedCart]);
+    setCurrentlyUpdating(null);
     setLoading(false);
   };
 
   // ADD TO CART
   const addToCart = (id) => {
+    if (loading) return;
     const currentQuantity = getProductQty(id);
     const basketUpdate = { id, quantity: currentQuantity + 1 };
-
-    if (!auth?.accessToken) {
+    setCurrentlyUpdating(id);
+    if (!isAuthenticated) {
       updateCartGuest(basketUpdate);
     } else {
       updateCartAuth(basketUpdate);
@@ -157,14 +165,16 @@ export const CartProvider = ({ children }) => {
 
   // SUBTRACT FROM CART
   const decrementProduct = (id) => {
+    if (loading) return;
     const currentQuantity = getProductQty(id);
+    setCurrentlyUpdating(id);
     if (currentQuantity === 0) return;
     const basketUpdate = {
       id,
       quantity: currentQuantity - 1,
     };
 
-    if (!auth?.accessToken) {
+    if (!isAuthenticated) {
       updateCartGuest(basketUpdate);
     } else {
       updateCartAuth(basketUpdate);
@@ -180,6 +190,8 @@ export const CartProvider = ({ children }) => {
     decrementProduct,
     cartInitialized,
     setCartInitialized,
+    currentlyUpdating,
+    setCurrentlyUpdating,
   };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
