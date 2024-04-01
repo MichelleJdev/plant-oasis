@@ -38,7 +38,7 @@ function ProductPage() {
     },
     {
       text: product?.name || id,
-      link: `/store/${category}/id`,
+      link: `/store/${category}/${id}`,
     },
   ];
 
