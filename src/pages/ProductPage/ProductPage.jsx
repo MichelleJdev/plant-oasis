@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import "./ProductPage.css";
 import ProductBtnGroup from "../../components/ProductBtnGroup/ProductBtnGroup";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
+import ProductSkeleton from "./ProductSkeleton/ProductSkeleton";
 
 const ENDPOINT = "/products";
 
@@ -41,8 +42,6 @@ function ProductPage() {
     },
   ];
 
-  // find category with product id and set name
-
   useEffect(() => {
     const controller = new AbortController();
     const getProduct = async () => {
@@ -65,11 +64,13 @@ function ProductPage() {
     return () => controller.abort();
   }, [id]);
 
-  // TODO - check for product before rendering
   return (
     <PageAnimator pageName="ProductPage">
       {loading ? (
-        <p>Loading...</p>
+        <>
+          <div className="breadcrumbs-space"></div>
+          <ProductSkeleton />
+        </>
       ) : (
         <>
           <Breadcrumbs crumbs={crumbs} />
