@@ -28,7 +28,7 @@ function Home() {
       <div className="Home">
         <section className="hero">
           <div className="container">
-            <h1>Plant Oasis</h1>
+            <h1>The Garden Hub</h1>
             <p>
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Reprehenderit, cupiditate!

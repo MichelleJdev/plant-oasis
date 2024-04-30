@@ -17,8 +17,8 @@
 
   --padding-inline: 5%;
 
-  --full-vh: calc(100vh - 49.16px);
-  --half-vh: calc(50vh - 49.16px);
+  --full-vh: calc(100vh - 55px);
+  --half-vh: calc(50vh - 55px);
 
   --color-success-light: rgb(183, 226, 216);
   --color-success: rgb(138, 195, 193);

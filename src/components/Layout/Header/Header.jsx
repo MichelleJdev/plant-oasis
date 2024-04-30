@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
-import siteLogo from "../../../assets/images/siteLogo.png";
+import siteLogo from "../../../assets/images/logo.png";
 import useCartContext from "../../../hooks/useCartContext";
 import BasketCount from "../../BasketCount/BasketCount";
 import useAuth from "../../../auth/hooks/useAuth";
@@ -34,7 +34,7 @@ function Header() {
           </DropdownMenu>
         )}
 
-        <Link to="/">
+        <Link to="/" className="logo-link">
           <img src={siteLogo} alt="logo" className="siteLogo" />
         </Link>
         {isDesktop ? (
