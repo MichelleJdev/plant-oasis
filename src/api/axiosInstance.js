@@ -1,7 +1,7 @@
 import axios from "axios";
 const BASE_URL =
   process.env.NODE_ENV === "production"
-    ? "https://plantoasis-api.onrender.com"
+    ? "https://the-garden-hub-api.onrender.com"
     : "http://localhost:5000";
 
 export default axios.create({

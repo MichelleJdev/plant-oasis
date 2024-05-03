@@ -13,7 +13,7 @@ export const navCategories = [
   },
 ];
 
-export const SITE_NAME = "Plant Oasis";
+export const SITE_NAME = "The Garden Hub";
 
 export const SERVER_ERROR_MSG = "Oops! Something went wrong";
 export const SIGN_IN_MSG = "You've been logged out. Sign in to procede";
