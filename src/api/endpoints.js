@@ -7,3 +7,4 @@ export const CHECKOUT_ROUTE = "/checkout";
 export const CHECKOUT_ROUTE_AUTH = "/checkout/authenticated";
 export const CATEGORIES_ROUTE = "/categories";
 export const REGISTER_ROUTE = "/auth/register";
+export const USER_ROUTE = "/user";

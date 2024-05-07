@@ -79,6 +79,12 @@
   margin-bottom: 0.75rem;
 }
 
+.ProductPage .interactables {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 .product-price {
   font-size: var(--font-xl);
   margin-bottom: 0.5rem;

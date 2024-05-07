@@ -1,0 +1,49 @@
+.SaveToFavouritesBtn {
+  position: relative;
+}
+.SaveToFavouritesBtn input[type="checkbox"] {
+  z-index: 2;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.SaveToFavouritesBtn .icon {
+  color: white;
+  position: absolute;
+  stroke: rgb(84, 86, 86);
+  left: 0;
+  transform: translateX(-2px);
+  z-index: -1;
+}
+.SaveToFavouritesBtn .icon.checked.animate {
+  animation-name: fill-heart;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+.SaveToFavouritesBtn .icon.unchecked.animate {
+  animation-name: empty-heart;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fill-heart {
+  0% {
+    color: rgb(255, 255, 255);
+  }
+
+  50% {
+    transform: scale(1.2) translateX(-2px);
+  }
+  100% {
+    color: var(--heart-color);
+  }
+}
+@keyframes empty-heart {
+  0% {
+    color: var(--heart-color);
+  }
+
+  100% {
+    color: white;
+  }
+}
