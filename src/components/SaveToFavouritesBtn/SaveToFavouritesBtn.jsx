@@ -7,10 +7,6 @@ import useAxiosPrivate from "../../auth/hooks/useAxiosPrivate";
 import { USER_ROUTE } from "../../api/endpoints";
 import { toast } from "react-toastify";
 
-const iconStyles = {
-  backgroundColor: "green",
-};
-
 function SaveToFavouritesBtn({ productId }) {
   const { isAuthenticated, auth, setAuth } = useAuth();
   const isChecked = useMemo(() => {

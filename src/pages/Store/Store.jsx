@@ -5,7 +5,7 @@ import {
   useParams,
   useNavigate,
 } from "react-router-dom";
-import ProductListItem from "./ProductListItem/ProductListItem.jsx";
+import ProductListItem from "../../components/ProductListItem/ProductListItem.jsx";
 import SortAndFilter from "./SortAndFilter/SortAndFilter.jsx";
 import PageSelector from "./PageSelector/PageSelector.jsx";
 import useScrollTop from "../../hooks/useScrollTop.js";

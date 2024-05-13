@@ -2,7 +2,6 @@
   position: relative;
 }
 .SaveToFavouritesBtn input[type="checkbox"] {
-  z-index: 2;
   opacity: 0;
   cursor: pointer;
 }
@@ -13,7 +12,11 @@
   stroke: rgb(84, 86, 86);
   left: 0;
   transform: translateX(-2px);
-  z-index: -1;
+  pointer-events: none;
+  font-size: 1.1rem;
+}
+.SaveToFavouritesBtn .icon.checked {
+  color: var(--heart-color);
 }
 .SaveToFavouritesBtn .icon.checked.animate {
   animation-name: fill-heart;
@@ -32,7 +35,7 @@
   }
 
   50% {
-    transform: scale(1.2) translateX(-2px);
+    transform: scale(1.1) translateX(-2px);
   }
   100% {
     color: var(--heart-color);

@@ -9,7 +9,9 @@ import Register from "./pages/Register/Register";
 import CheckoutSuccess from "./pages/CheckoutSuccess/CheckoutSuccess";
 import CheckoutCancelled from "./pages/CheckoutCancelled/CheckoutCancelled";
 import ErrorRedirect from "./components/ErrorRedirect/ErrorRedirect";
+import RequireAuth from "./auth/components/RequireAuth";
 import { ToastContainer } from "react-toastify";
+import Favourites from "./pages/Favourites/Favourites";
 
 function App() {
   return (
@@ -34,6 +36,9 @@ function App() {
         />
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path="user" element={<RequireAuth />}>
+            <Route path="favourites" element={<Favourites />} />
+          </Route>
           <Route path="store/:category" element={<Store />} />
           <Route path="store/:category/:id" element={<ProductPage />} />
 

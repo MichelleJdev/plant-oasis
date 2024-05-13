@@ -12,6 +12,7 @@ import { BiMenu } from "react-icons/bi";
 import { IoCaretDownSharp } from "react-icons/io5";
 import useScreenSize from "../../../hooks/useScreenSize";
 import DropdownMenu from "./DropdownMenu/DropdownMenu";
+import { GoHeart } from "react-icons/go";
 
 function Header() {
   const { cartItems, loading: cartLoading } = useCartContext();
@@ -55,6 +56,13 @@ function Header() {
         ) : null}
 
         <div className="nav-right">
+          <NavLink to="/user/favourites">
+            <GoHeart
+              className="favourites-icon"
+              fill="transparent"
+              strokeWidth="1px"
+            />
+          </NavLink>
           <NavLink to="/basket">
             <BasketCount quantity={totalInCart} loading={cartLoading} />
           </NavLink>
