@@ -11,6 +11,7 @@ import "./ProductPage.css";
 import ProductBtnGroup from "../../components/ProductBtnGroup/ProductBtnGroup";
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ProductSkeleton from "./ProductSkeleton/ProductSkeleton";
+import SaveToFavouritesBtn from "../../components/SaveToFavouritesBtn/SaveToFavouritesBtn";
 
 const ENDPOINT = "/products";
 
@@ -99,19 +100,25 @@ function ProductPage() {
                 <div>
                   <p className="product-price">{product.formattedPrice}</p>
                   {quantity === 0 ? (
-                    <motion.button
-                      className="addTo-btn"
-                      onClick={() => addToCart(product.id)}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{
-                        duration: 0.5,
-                      }}
-                    >
-                      Add to basket
-                    </motion.button>
+                    <div className="interactables">
+                      <motion.button
+                        className="addTo-btn"
+                        onClick={() => addToCart(product.id)}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{
+                          duration: 0.5,
+                        }}
+                      >
+                        Add to basket
+                      </motion.button>
+                      <SaveToFavouritesBtn productId={id} />
+                    </div>
                   ) : (
-                    <ProductBtnGroup id={product.id} />
+                    <div className="interactables">
+                      <ProductBtnGroup id={product.id} />
+                      <SaveToFavouritesBtn productId={id} />
+                    </div>
                   )}
                 </div>
               </div>

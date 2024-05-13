@@ -5,6 +5,7 @@
   position: sticky;
   top: 49px;
   top: 0;
+  z-index: 100;
 }
 
 .sortFilter-container {

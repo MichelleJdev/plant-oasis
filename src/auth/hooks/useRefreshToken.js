@@ -16,7 +16,7 @@ function useRefreshToken() {
       });
       setAuth({
         accessToken: response.data.accessToken,
-        isAdmin: response.data.isAdmin,
+        favourites: response.data.favourites,
         name: response.data.name,
         emailAddress: response.data.email,
       });

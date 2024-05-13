@@ -82,13 +82,14 @@ function Login() {
         }
       );
 
-      const { name, accessToken, isAdmin, emailAddress } = response.data;
+      const { name, accessToken, isAdmin, emailAddress, favourites } =
+        response.data;
 
       localStorage.setItem("cart", JSON.stringify([]));
       localStorage.setItem("persist", JSON.stringify(trustDevice));
       setLoading(false);
       // setCartInitialized(false);
-      setAuth({ name, accessToken, isAdmin, emailAddress });
+      setAuth({ name, accessToken, emailAddress, favourites });
       setCartItems([]);
       navigate(redirectUrl);
     } catch (error) {

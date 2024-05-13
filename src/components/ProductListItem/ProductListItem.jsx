@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-// import PageAnimator from "../../../components/PageAnimator";
 import "./ProductListItem.css";
+import SaveToFavouritesBtn from "../SaveToFavouritesBtn/SaveToFavouritesBtn";
 
 function ProductListItem({ product, category }) {
   const { id, name, imageUrl, formattedPrice } = product;
   return (
-    // <PageAnimator>
     <motion.div
       className="Product"
       initial={{ opacity: 0 }}
@@ -26,10 +25,11 @@ function ProductListItem({ product, category }) {
         <Link to={`/store/${category}/${id}`}>
           <h5 className="name">{name}</h5>
         </Link>
-        <div className="price">{formattedPrice}</div>
+        <div className="price">
+          {formattedPrice} <SaveToFavouritesBtn productId={id} />
+        </div>
       </div>
     </motion.div>
-    // </PageAnimator>
   );
 }
 
