@@ -26,5 +26,13 @@ export const SUCCESSFUL_REG_MSG =
 export const REG_ERROR_MSG = "Registration failed. Please check credentials";
 export const USER_EXISTS_ERROR_MSG =
   "Email already registered. Log in or create a new account";
-export const PASSWORD_HINT =
-  "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 number, must be at least 8 characters long and include 1 special character(@$!%*?&)";
+export const PASSWORD_HINT = {
+  heading: "Password must contain:",
+  criteria: [
+    "At least 8 characters",
+    "At least 1 uppercase letter",
+    "At least 1 lowercase letter",
+    "At least 1 number",
+    "At least 1 special character (@$!%*?&)",
+  ],
+};

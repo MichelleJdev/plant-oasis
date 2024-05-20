@@ -35,7 +35,6 @@ function Register() {
   const [password, setPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [showPassHint, setShowPassHint] = useState("");
 
   const navigate = useNavigate();
 
@@ -72,11 +71,6 @@ function Register() {
   useEffect(() => {
     nameRef.current.focus();
   }, []);
-
-  const togglePassHint = (evt) => {
-    evt.preventDefault();
-    setShowPassHint(!showPassHint);
-  };
 
   const toggleShowPass = (evt) => {
     evt.preventDefault();
@@ -132,19 +126,6 @@ function Register() {
       <div className="container">
         <div className="img-container"></div>
         <div className="form-container">
-          <div className="pass-hint">
-            <button
-              onClick={togglePassHint}
-              className={`pass-hint-btn ${showPassHint ? "active" : ""}`}
-            >
-              <FaQuestion />
-            </button>
-            {showPassHint ? (
-              <p className={`${showPassHint ? "active" : ""}`}>
-                {PASSWORD_HINT}
-              </p>
-            ) : null}
-          </div>
           <form onSubmit={handleSubmit}>
             <div className="input-group">
               <label htmlFor="name">First Name</label>
@@ -154,6 +135,7 @@ function Register() {
                 value={name}
                 onChange={handleNameChange}
                 ref={nameRef}
+                className={validName ? "valid" : ""}
               />
             </div>
             <div className="input-group">
@@ -163,16 +145,31 @@ function Register() {
                 id="email"
                 value={email}
                 onChange={handleEmailChange}
+                className={validEmail ? "valid" : ""}
               />
             </div>
             <div className="input-group">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">
+                Password
+                <button className="pass-hint">
+                  <FaQuestion />
+                  <div className="hint">
+                    <div className="hint-heading">{PASSWORD_HINT.heading}</div>
+                    <ul>
+                      {PASSWORD_HINT.criteria.map((criterion) => (
+                        <li>{criterion}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </button>
+              </label>
               <div className="input-container">
                 <input
                   type={showPassword ? "text" : "password"}
                   id="password"
                   value={password}
                   onChange={handlePasswordChange}
+                  className={validPassword ? "valid" : ""}
                 />
                 <ShowHidePassBtn
                   showPassword={showPassword}
@@ -184,7 +181,7 @@ function Register() {
               <label htmlFor="password-match">Confirm Password</label>
               <div className="input-container">
                 <input
-                  className="password"
+                  className={validPasswordMatch ? "valid password" : "password"}
                   type={showPassword ? "text" : "password"}
                   id="password-match"
                   value={passwordMatch}

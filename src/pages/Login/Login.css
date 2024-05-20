@@ -14,6 +14,10 @@
   margin-top: 1rem;
 }
 
+.Login input:focus {
+  box-shadow: 0 0 0 2px var(--color-100), 0 0 0 3px var(--color-secondary);
+}
+
 @media screen and (max-width: 700px) {
   .Login .img-container {
     display: none;

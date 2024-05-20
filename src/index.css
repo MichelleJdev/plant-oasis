@@ -25,7 +25,7 @@
   --color-success-dark: rgb(75, 153, 158);
   --color-warning-light: rgb(227, 186, 190);
   --color-warning: rgb(180, 130, 139);
-  --color-warning-dark: rgb(160, 96, 105);
+  --color-warning-dark: rgb(157, 58, 71);
   --color-primary-light: rgb(200, 192, 192);
   --color-primary: rgb(125, 120, 120);
   --color-primary-dark: rgb(92, 87, 86);
@@ -121,10 +121,21 @@ button {
 .input-group .input-container {
   position: relative;
 }
+
+.input-group label {
+  display: inline-block;
+  margin-bottom: 0.25em;
+}
 .input-group input {
   display: block;
   width: 100%;
   padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  transition: box-shadow 0.2s ease-in;
+}
+.input-group input:focus {
+  outline: none;
 }
 .input-group input.password {
   padding-right: calc(1em + 1rem);
@@ -161,7 +172,7 @@ button {
 }
 
 .login-reg-option {
-  color: var(--color-200);
+  color: var(--color-300);
   font-size: var(--font-xs);
   font-weight: lighter;
   letter-spacing: 0.03em;

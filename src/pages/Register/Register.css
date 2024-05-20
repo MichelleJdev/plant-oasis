@@ -1,35 +1,67 @@
 .Register {
   color: var(--color-400);
 }
-
+.pass-hint svg {
+  font-size: 10px;
+}
 .Register .pass-hint {
-  margin-bottom: 1rem;
-}
-.Register .pass-hint p {
-  max-width: 80ch;
-  font-size: var(--font-xs);
-  transform: scaleY(0);
-  transition: transform 0.3s ease-in-out;
-}
-.Register .pass-hint p.active {
-  transform: scaleY(1);
-  transition-delay: 0.5s;
-
-  color: var(--color-secondary);
-}
-
-.Register .pass-hint-btn {
+  position: absolute;
+  left: calc(100% + 5px);
+  top: 0px;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
   padding: 0.25em;
   border: none;
-  background-color: white;
-  color: var(--color-secondary);
   cursor: pointer;
-  margin-bottom: 1rem;
+  color: var(--color-secondary);
 }
-.Register .pass-hint-btn.active {
-  box-shadow: 0 0 4px 2px rgba(100, 100, 100, 0.5);
+.Register .pass-hint .hint {
+  position: absolute;
+  left: 20px;
+  top: 1rem;
+  transform-origin: top left;
+  font-size: var(--font-xs);
+  transform: scale(0);
+  padding: 2rem;
+  border-radius: 10px;
+  border-top-left-radius: 0;
+  transition: transform 0.3s ease-in-out;
+  background-color: var(--color-secondary);
+  color: var(--color-200);
+  text-align: left;
+}
+.Register .pass-hint:hover .hint,
+.Register .pass-hint:focus .hint {
+  transform: scaleY(1);
+}
+
+.Register .pass-hint .hint-heading {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+.Register .pass-hint li {
+  text-wrap: nowrap;
+  list-style: initial;
+  margin-bottom: 0.5em;
+}
+
+.Register label {
+  position: relative;
+}
+.Register label::after {
+  position: relative;
+  content: "*";
+  right: -2px;
+  color: var(--color-warning-dark);
+}
+
+.Register input:focus {
+  box-shadow: 0 0 0 2px var(--color-100), 0 0 0 3px rgb(184, 24, 48);
+}
+.Register input:focus.valid {
+  box-shadow: 0 0 0 2px var(--color-100), 0 0 0 3px rgb(82, 188, 132);
 }
